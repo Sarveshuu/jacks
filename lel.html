@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport">
+<title>Make Your Sign ID</title>
+    <!-- External library to capture the ID card as an image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* CSS Code Starts Here */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: radial-gradient(ellipse at center, #ff8c00 0%, #1a1a1a 70%, #000000 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+            padding: 20px 0;
+        }
+
+        .main-wrapper {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .form-container h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: #ffaf4d;
+            text-shadow: 0 0 10px #ff8c00;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            background: rgba(0,0,0,0.3);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 12px;
+            width: 280px;
+            border-radius: 8px;
+            border: 2px solid #ff8c00;
+            background-color: #333;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        /* Custom File Input Button */
+        input[type="file"] {
+            display: none;
+        }
+        .file-label {
+            padding: 12px 20px;
+            width: 280px;
+            background-color: #333;
+            color: #aaa;
+            border: 2px dashed #ff8c00;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .file-label:hover {
+            background-color: #444;
+            color: white;
+        }
+
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff8c00;
+            color: black;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px #ff8c00;
+            width: 308px;
+        }
+
+        button:hover {
+            background-color: #ffaf4d;
+            box-shadow: 0 0 25px #ffaf4d;
+        }
+
+        /* ID Card Styling */
+        .id-card-container {
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .id-card {
+            position: relative;
+            width: 350px;
+            /* Digital Orange Background */
+            background: linear-gradient(135deg, #fd5e08, #ff8c00, #ffc107);
+            border: 3px solid #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(255, 140, 0, 0.5);
+            overflow: hidden;
+            color: black;
+        }
+        
+        .id-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .id-header h2 {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .id-body {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-pic img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            object-fit: cover;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .user-details {
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .user-details p {
+            margin: 8px 0;
+        }
+
+        .id-footer {
+            margin-top: 25px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .id-footer p {
+            margin: 0;
+            /* White color and cursive font */
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        #downloadBtn {
+            background-color: #1E90FF; /* Dodger Blue */
+            box-shadow: 0 0 15px #1E90FF;
+            color: white;
+        }
+        #downloadBtn:hover {
+            background-color: #46a4ff;
+            box-shadow: 0 0 25px #46a4ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- HTML Code Starts Here -->
+    <div class="main-wrapper">
+        <div class="form-container" id="formContainer">
+            <h1>Create Your Signee ID</h1>
+            <form id="idForm">
+                <input type="text" id="name" placeholder="Enter Your Name" required>
+                <input type="number" id="age" placeholder="Enter Your Age" required>
+                <label for="photo" class="file-label" id="fileLabel">Upload Your Photo</label>
+                <input type="file" id="photo" accept="image/*" required>
+                <button type="submit">Generate ID</button>
+            </form>
+        </div>
+
+        <div class="id-card-container" id="idCardContainer">
+            <div class="id-card" id="idCardToDownload">
+                <div class="id-header">
+                    <h2>SIGN IDENTITY</h2>
+                </div>
+                <div class="id-body">
+                    <div class="profile-pic">
+                        <img id="cardPhoto" src="https://placehold.co/100x100/ffffff/000000?text=Photo" alt="User Photo">
+                    </div>
+                    <div class="user-details">
+                        <p><strong>Name:</strong> <span id="cardName"></span></p>
+                        <p><strong>Age:</strong> <span id="cardAge"></span></p>
+                    </div>
+                </div>
+                <div class="id-footer">
+                    <p>"I Am A Certified Signee"</p>
+                </div>
+            </div>
+            <button id="downloadBtn">Download ID</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript Code Starts Here
+        const idForm = document.getElementById('idForm');
+        const photoInput = document.getElementById('photo');
+        const fileLabel = document.getElementById('fileLabel');
+        
+        // Show selected file name on the label
+        photoInput.addEventListener('change', function() {
+            if (photoInput.files.length > 0) {
+                fileLabel.textContent = photoInput.files[0].name;
+                fileLabel.style.color = 'white';
+                fileLabel.style.borderStyle = 'solid';
+            } else {
+                fileLabel.textContent = 'Upload Your Photo';
+            }
+        });
+
+        idForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const photoFile = photoInput.files[0];
+
+            if (name && age && photoFile) {
+                // Use FileReader to read the image file
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('cardPhoto').src = e.target.result;
+                };
+                reader.readAsDataURL(photoFile);
+
+                document.getElementById('cardName').textContent = name;
+                document.getElementById('cardAge').textContent = age;
+
+                // Hide form and show ID card
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('idCardContainer').style.display = 'flex';
+            }
+        });
+        
+        // Download button logic
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            const idCardElement = document.getElementById('idCardToDownload');
+            
+            // Use html2canvas to capture the element
+            html2canvas(idCardElement, {
+                useCORS: true, // To handle cross-origin images
+                scale: 2 // For better quality
+            }).then(canvas => {
+                // Create a temporary link to trigger download
+                const link = document.createElement('a');
+                link.download = 'Signee-ID-Card.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>

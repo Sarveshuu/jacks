@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Stickers - 50+ New Animated Stickers</title>
+    <style>
+        /* CSS Code Starts Here */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600&display=swap');
+
+        :root {
+            --orange: #ff7f50;
+            --dark-orange: #ff6347;
+            --white: #ffffff;
+            --light-bg: #fff5f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Bubbling Background Animation */
+        .bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -150px;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 127, 80, 0.2);
+            border-radius: 50%;
+            animation: rise 25s infinite;
+        }
+
+        .bubble:nth-child(1) { left: 10%; animation-duration: 15s; }
+        .bubble:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; width: 20px; height: 20px; }
+        .bubble:nth-child(3) { left: 35%; animation-duration: 20s; }
+        .bubble:nth-child(4) { left: 50%; animation-duration: 18s; animation-delay: 4s; width: 60px; height: 60px; }
+        .bubble:nth-child(5) { left: 65%; animation-duration: 14s; }
+        .bubble:nth-child(6) { left: 80%; animation-duration: 16s; animation-delay: 1s; width: 30px; height: 30px; }
+        .bubble:nth-child(7) { left: 90%; animation-duration: 22s; }
+        .bubble:nth-child(8) { left: 25%; animation-duration: 17s; animation-delay: 5s; }
+        .bubble:nth-child(9) { left: 55%; animation-duration: 13s; animation-delay: 3s; width: 25px; height: 25px; }
+        .bubble:nth-child(10) { left: 75%; animation-duration: 19s; }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 3.5rem;
+            color: var(--dark-orange);
+            text-shadow: 3px 3px 0 var(--white), 6px 6px 0 rgba(255, 127, 80, 0.3);
+            margin: 40px 0;
+            animation: bounceIn 1s ease;
+        }
+        
+        @keyframes bounceIn {
+            0%, 20%, 40%, 60%, 80%, 100% { transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); }
+            0% { opacity: 0; transform: scale3d(.3, .3, .3); }
+            20% { transform: scale3d(1.1, 1.1, 1.1); }
+            40% { transform: scale3d(.9, .9, .9); }
+            60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
+            80% { transform: scale3d(.97, .97, .97); }
+            100% { opacity: 1; transform: scale3d(1, 1, 1); }
+        }
+
+        /* Sticker Gallery */
+        .sticker-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .sticker-item {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 10px 20px var(--shadow);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sticker-item:hover {
+            animation: sticker-hop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes sticker-hop {
+            0%   { transform: translateY(0)    scale(1)   rotate(0);    box-shadow: 0 10px 20px var(--shadow); }
+            50%  { transform: translateY(-15px) scale(1.1) rotate(-5deg); box-shadow: 0 20px 35px rgba(255, 127, 80, 0.4); }
+            100% { transform: translateY(-10px) scale(1.05) rotate(0deg);  box-shadow: 0 15px 30px rgba(255, 127, 80, 0.3); }
+        }
+
+        .sticker-item svg {
+            width: 100%;
+            height: auto;
+        }
+        
+        .sticker-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transform: skewX(-30deg);
+            transition: left 0.7s ease;
+        }
+        
+        .sticker-item:hover::before {
+            left: 150%;
+        }
+
+        /* Modal Popup */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-sticker {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            color: #555;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .download-btn {
+            background-color: var(--orange);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--dark-orange);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Bubbling Background -->
+    <div class="bubbles">
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+        <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+   
+
+    <!-- HTML Code Starts Here -->
+    <div class="container">
+        <header>
+            <h1>Sign Stickers By Sarvesh🍊</h1>
+        </header>
+        
+        <main>
+            <div class="sticker-gallery" id="stickerGallery">
+                <!-- Stickers yahan JavaScript se add honge -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Popup HTML -->
+    <div class="modal" id="stickerModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeBtn">&times;</span>
+            <div id="modalStickerContainer"></div>
+            <button class="download-btn" id="downloadBtn">Download Sticker</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript Code Starts Here
+        document.addEventListener('DOMContentLoaded', () => {
+            const stickerGallery = document.getElementById('stickerGallery');
+            const stickerModal = document.getElementById('stickerModal');
+            const modalStickerContainer = document.getElementById('modalStickerContainer');
+            const closeBtn = document.getElementById('closeBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+
+            // Helper function to create the base of the sticker (orange body + leaf)
+            const createStickerBase = (content) => {
+                return `
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="orangeGradient" cx="0.5" cy="0.5" r="0.5">
+                            <stop offset="0%" stop-color="#FFC300" />
+                            <stop offset="80%" stop-color="#F39C12" />
+                            <stop offset="100%" stop-color="#E67E22" />
+                        </radialGradient>
+                    </defs>
+                    <g>
+                        <!-- Orange Body -->
+                        <circle cx="50" cy="55" r="45" fill="url(#orangeGradient)"/>
+                        <!-- Leaf -->
+                        <path d="M50,18 C60,0 85,5 70,25 C85,5 100,20 80,30 C100,20 80,45 65,35 C80,45 55,40 50,18 Z" fill="#2ECC71" transform="rotate(-20, 50, 18)"/>
+                        <path d="M63,24 C65,20 70,22 68,28" stroke="#1E8449" stroke-width="0.5" fill="none"/>
+                        <!-- Sticker content (face, etc.) goes here -->
+                        ${content}
+                    </g>
+                </svg>`;
+            };
+
+            // Array to hold all sticker content
+            const stickerContents = [
+                // Happy & Joyful
+                `<path d="M30,65 Q50,85 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="6" fill="white"/><circle cx="35" cy="50" r="3" fill="black"/><circle cx="65" cy="50" r="6" fill="white"/><circle cx="65" cy="50" r="3" fill="black"/>`, // 1. Big Smile
+                `<path d="M25,60 Q50,90 75,60" stroke="#6E2C00" stroke-width="2" fill="white"/><path d="M30,45 Q35,40 40,45" stroke="black" stroke-width="2" fill="none"/><path d="M60,45 Q65,40 70,45" stroke="black" stroke-width="2" fill="none"/>`, // 2. Laughing
+                `<path d="M30,65 Q50,75 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><path d="M60,50 L70,50" stroke="black" stroke-width="2"/>`, // 3. Winking
+                `<circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M40,65 Q50,75 60,65" stroke="#6E2C00" stroke-width="2" fill="none"/>`, // 4. Simple Smile
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><path d="M30,45 Q35,40 40,45" stroke="black" stroke-width="2" fill="none"/><path d="M60,45 Q65,40 70,45" stroke="black" stroke-width="2" fill="none"/>`, // 5. Happy Eyes
+                // Love & Affection
+                `<path d="M25,60 Q50,85 75,60" stroke="#6E2C00" stroke-width="2" fill="white"/><path d="M35,45 C25,35 50,35 35,45 C20,55 40,65 35,45 Z" fill="red"/><path d="M65,45 C55,35 80,35 65,45 C50,55 70,65 65,45 Z" fill="red"/>`, // 6. Heart Eyes
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M75, 50 a 5,5 0 0,1 10,0 a 5,5 0 0,1 -10,0" fill="red" stroke="none"/>`, // 7. Kissy Face
+                `<circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M40,65 Q50,75 60,65" stroke="#6E2C00" stroke-width="2" fill="none"/><path d="M25,35 C15,25 40,25 25,35 C10,45 30,55 25,35 Z" fill="pink"/><path d="M75,35 C65,25 90,25 75,35 C60,45 80,55 75,35 Z" fill="pink"/>`, // 8. Blushing
+                `<path d="M25,60 Q50,85 75,60" stroke="#6E2C00" stroke-width="2" fill="white"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><text x="50" y="40" font-size="15" fill="red" text-anchor="middle">❤</text>`, // 9. Heart Above Head
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><path d="M30,45 Q35,40 40,45" stroke="black" stroke-width="2" fill="none"/><path d="M60,45 Q65,40 70,45" stroke="black" stroke-width="2" fill="none"/><path d="M20, 60 a 10,10 0 0,1 20,0" fill="pink"/><path d="M80, 60 a 10,10 0 0,0 -20,0" fill="pink"/>`, // 10. Cheeks Blushing
+                // Sad & Moody
+                `<path d="M30,70 Q50,55 70,70" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/>`, // 11. Sad Mouth
+                `<path d="M30,75 Q50,60 70,75" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M35,60 Q30,70 35,75" stroke="#3498DB" stroke-width="2" fill="none"/><path d="M65,60 Q70,70 65,75" stroke="#3498DB" stroke-width="2" fill="none"/>`, // 12. Crying
+                `<path d="M35,70 L65,70" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/>`, // 13. Neutral Face
+                `<path d="M30,75 Q50,60 70,75" stroke="#6E2C00" stroke-width="2" fill="none"/><line x1="30" y1="45" x2="45" y2="50" stroke="black" stroke-width="3"/><line x1="70" y1="45" x2="55" y2="50" stroke="black" stroke-width="3"/>`, // 14. Angry
+                `<path d="M30,70 Q50,55 70,70" stroke="#6E2C00" stroke-width="2" fill="none"/><path d="M30,45 Q35,50 40,45" stroke="black" stroke-width="2" fill="none"/><path d="M60,45 Q65,50 70,45" stroke="black" stroke-width="2" fill="none"/>`, // 15. Worried
+                // Cool & Funny
+                `<path d="M30,70 Q50,60 70,70" stroke="#6E2C00" stroke-width="2" fill="none"/><rect x="25" y="45" width="25" height="15" rx="5" fill="black"/><rect x="55" y="45" width="25" height="15" rx="5" fill="black"/><line x1="50" y1="52" x2="55" y2="52" stroke="black" stroke-width="2"/>`, // 16. Sunglasses
+                `<ellipse cx="50" cy="70" rx="10" ry="15" fill="black"/><circle cx="35" cy="50" r="6" fill="white" stroke="black" stroke-width="1"/><circle cx="65" cy="50" r="6" fill="white" stroke="black" stroke-width="1"/>`, // 17. Surprised
+                `<path d="M30,65 L 40,65 L 40,70 L 45,70 L 45,65 L 55,65 L 55,70 L 60,70 L 60,65 L 70,65" stroke="#6E2C00" stroke-width="2" fill="white"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/>`, // 18. Toothy Grin
+                `<path d="M30,65 Q50,75 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M65,65 L 75,60" stroke="#E74C3C" stroke-width="2"/>`, // 19. Tongue Out
+                `<path d="M30 45 L 40 55 M 40 45 L 30 55" stroke="black" stroke-width="2"/><path d="M60 45 L 70 55 M 70 45 L 60 55" stroke="black" stroke-width="2"/><path d="M30,70 Q50,55 70,70" stroke="#6E2C00" stroke-width="2" fill="none"/>`, // 20. Dizzy
+                // Other Expressions
+                `<path d="M30,45 Q35,50 40,45" stroke="black" stroke-width="2" fill="none"/><path d="M60,45 Q65,50 70,45" stroke="black" stroke-width="2" fill="none"/><path d="M40,70 Q50,80 60,70" stroke="#6E2C00" stroke-width="2" fill="none"/>`, // 21. Sleepy
+                `<path d="M35,70 L65,70" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><circle cx="80" cy="35" r="3" fill="#5D6D7E"/><circle cx="85" cy="25" r="2" fill="#5D6D7E"/>`, // 22. Thinking
+                `<circle cx="35" cy="50" r="6" fill="white" stroke="black" stroke-width="1"/><circle cx="65" cy="50" r="6" fill="white" stroke="black" stroke-width="1"/><path d="M45,70 a 5,5 0 0,0 10,0" stroke="#6E2C00" stroke-width="2" fill="none"/>`, // 23. 'O' Mouth
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M50, 40 L 50, 30 M 45, 35 L 55, 35" stroke="#F1C40F" stroke-width="2"/>`, // 24. Halo
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M20,40 L 30,40 L 25,30 Z" fill="#E74C3C"/><path d="M80,40 L 70,40 L 75,30 Z" fill="#E74C3C"/>`, // 25. Devil Horns
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,40 Q50,30 55,40" stroke="#A04000" stroke-width="2" fill="none"/>`, // 26. Unibrow
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><rect x="25" y="48" width="10" height="15" rx="2" fill="#D5DBDB"/>`, // 27. Monocle
+                `<path d="M30,70 Q50,55 70,70" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M48,60 L52,60 L50,55 Z" fill="#3498DB"/>`, // 28. Droplet
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><text x="50" y="40" font-size="15" fill="black" text-anchor="middle">?</text>`, // 29. Question Mark
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><text x="50" y="40" font-size="15" fill="#F1C40F" text-anchor="middle">💡</text>`, // 30. Idea
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,75 L55,75" stroke="#6E2C00" stroke-width="2"/><path d="M45,80 L55,80" stroke="#6E2C00" stroke-width="2"/>`, // 31. Zipper Mouth
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><text x="50" y="75" font-size="15" fill="#3498DB" text-anchor="middle">Zzz</text>`, // 32. Sleeping
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><circle cx="50" cy="50" r="15" fill="none" stroke="#E74C3C" stroke-width="2" stroke-dasharray="3"/>`, // 33. Target
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><rect x="45" y="45" width="10" height="2" fill="black"/>`, // 34. Pirate Patch
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M40,40 C 30,30 60,30 50,40" fill="#A04000"/>`, // 35. Moustache
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,45 L55,45 L50,35 Z" fill="#F1C40F"/>`, // 36. Party Hat
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M40,70 L60,70 L50,80 Z" fill="#F1C40F"/>`, // 37. Goatee
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M50,70 a 10,5 0 0,0 0,10 a 10,5 0 0,0 0,-10" fill="#E74C3C"/>`, // 38. Pacifier
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,40 L55,40" stroke="black" stroke-width="2"/>`, // 39. Straight Eyebrows
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,40 Q50,50 55,40" stroke="black" stroke-width="2"/>`, // 40. Curved Eyebrows
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M20,50 L 80,50" stroke="#E74C3C" stroke-width="2"/>`, // 41. Band-Aid
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,70 L55,70 L50,60 Z" fill="white"/>`, // 42. Vampire Tooth
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M40,30 L60,30 L50,20 Z" fill="#3498DB"/>`, // 43. Crown
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,70 L55,70" stroke="#6E2C00" stroke-width="2"/><path d="M45,75 L55,75" stroke="#6E2C00" stroke-width="2"/><path d="M45,80 L55,80" stroke="#6E2C00" stroke-width="2"/>`, // 44. Stitches
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><text x="50" y="75" font-size="15" fill="black" text-anchor="middle">...</text>`, // 45. Speechless
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,40 L55,40 L50,50 Z" fill="#E74C3C"/>`, // 46. Nose
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M20,70 L 80,70" stroke="#6E2C00" stroke-width="2"/>`, // 47. Wide Mouth
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,70 a 5,5 0 0,1 10,0" stroke="#6E2C00" stroke-width="2" fill="none"/>`, // 48. Small 'o' mouth
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M40,40 L 60,40 L 50,30 Z" fill="#5D6D7E"/>`, // 49. Headphones
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><text x="50" y="40" font-size="15" fill="#2ECC71" text-anchor="middle">$</text><text x="35" y="55" font-size="15" fill="#2ECC71" text-anchor="middle">$</text>`, // 50. Money Eyes
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M45,70 L55,70" stroke="#6E2C00" stroke-width="2"/><path d="M45,75 L55,75" stroke="#6E2C00" stroke-width="2"/><path d="M45,80 L55,80" stroke="#6E2C00" stroke-width="2"/><path d="M48,70 L48,80" stroke="#6E2C00" stroke-width="2"/><path d="M52,70 L52,80" stroke="#6E2C00" stroke-width="2"/>`, // 51. Waffle Mouth
+                `<path d="M30,65 Q50,80 70,65" stroke="#6E2C00" stroke-width="2" fill="none"/><circle cx="35" cy="50" r="5" fill="black"/><circle cx="65" cy="50" r="5" fill="black"/><path d="M40,30 L60,30 L50,20 Z" fill="#F39C12"/><path d="M40,40 L60,40 L50,30 Z" fill="#F39C12"/>`, // 52. Double Crown
+            ];
+            
+            // Function to load stickers into the gallery
+            function loadStickers() {
+                stickerContents.forEach((content) => {
+                    const stickerSVG = createStickerBase(content);
+                    const stickerItem = document.createElement('div');
+                    stickerItem.classList.add('sticker-item');
+                    stickerItem.innerHTML = stickerSVG;
+                    stickerGallery.appendChild(stickerItem);
+                    stickerItem.addEventListener('click', () => openModal(stickerSVG));
+                });
+            }
+
+            function openModal(stickerSVG) {
+                modalStickerContainer.innerHTML = stickerSVG;
+                modalStickerContainer.firstElementChild.classList.add('modal-sticker');
+                stickerModal.style.display = 'flex';
+            }
+
+            function closeModal() {
+                stickerModal.style.display = 'none';
+            }
+            
+            closeBtn.addEventListener('click', closeModal);
+            stickerModal.addEventListener('click', (e) => {
+                if (e.target === stickerModal) closeModal();
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                const svgElement = modalStickerContainer.querySelector('svg');
+                const svgData = new XMLSerializer().serializeToString(svgElement);
+
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const size = 500;
+                canvas.width = size;
+                canvas.height = size;
+
+                const img = new Image();
+                img.onload = function() {
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, size, size);
+                    const link = document.createElement('a');
+                    link.download = 'sign-sticker.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                };
+                img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
+            });
+
+            loadStickers();
+        });
+    </script>
+</body>
+</html>

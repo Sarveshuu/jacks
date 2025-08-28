@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSAP 3D Scroll Animation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap');
+
+        :root {
+            --background-color: #1a1a1a; /* Dark black */
+            --primary-color: #ff9900;   /* Bright orange */
+            --text-color: #f0f0f0;       /* Off-white */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Canvas jisme 3D model render hoga */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ise background me rakhta hai */
+        }
+
+        /* Scrollable content ke liye container */
+        .content-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 50px 10%;
+            position: relative;
+        }
+
+        .section-content {
+            max-width: 500px;
+            background-color: rgba(26, 26, 26, 0.7); /* Thoda transparent background */
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        /* Text ko alternate sides par dikhane ke liye */
+        .section:nth-child(even) {
+            justify-content: flex-end;
+        }
+        .section:nth-child(odd) {
+            justify-content: flex-start;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* Last section ko center me align karne ke liye */
+        .section.center-align {
+            justify-content: center;
+            text-align: center;
+        }
+        .section.center-align .section-content {
+            border-left: none;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section {
+                justify-content: center !important; /* Mobile par sabhi sections center me */
+                padding: 50px 5%;
+            }
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3D Model ke liye Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Scrollable Content -->
+    <main class="content-container">
+        <section class="section center-align">
+            <div class="section-content">
+                <h1>Scroll to Learn About Orange Dynasty</h1>
+                <p>What Matters On Orange Dynasty.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-content">
+                <h2>Genuine Posts</h2>
+                <p>Aapke scroll ke saath, yeh 3D model transform hoga. Yeh experience three.js aur GSAP se banaya gaya hai.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-content">
+                <h2>
+                    Genuine Connections
+                </h2>
+                <p>ScrollTrigger animation ko scrollbar se link karta hai, jisse aapko animation par poora control milta hai. Upar ya niche scroll karke dekhein.</p>
+            </div>
+        </section>
+
+        <section class="section center-align">
+            <div class="section-content">
+                <h2>Best Version Of Yourself</h2>
+                <p>Yeh model ki final state hai. Animation yahan aakar ruk jaata hai.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        // --- Three.js Setup ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.querySelector('#bg-canvas'),
+            alpha: true // Canvas ko transparent banata hai
+        });
+
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.position.setZ(30);
+
+        // --- 3D Model (Orange Fruit) ---
+        // Ek group banate hain jisme orange aur stem dono honge
+        const orangeGroup = new THREE.Group();
+
+        // Orange ka body
+        const orangeGeometry = new THREE.SphereGeometry(10, 32, 32);
+        const orangeMaterial = new THREE.MeshStandardMaterial({ color: 0xff9900 });
+        const orangeMesh = new THREE.Mesh(orangeGeometry, orangeMaterial);
+        orangeGroup.add(orangeMesh);
+
+        // Orange ka stem
+        const stemGeometry = new THREE.CylinderGeometry(0.5, 0.5, 2, 8);
+        const stemMaterial = new THREE.MeshStandardMaterial({ color: 0x006400 }); // Dark green
+        const stemMesh = new THREE.Mesh(stemGeometry, stemMaterial);
+        stemMesh.position.y = 10; // Orange ke upar position set karte hain
+        orangeGroup.add(stemMesh);
+        
+        scene.add(orangeGroup);
+
+        // --- Lighting ---
+        const pointLight = new THREE.PointLight(0xffffff);
+        pointLight.position.set(20, 20, 20);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Thodi ambient light badhate hain
+        scene.add(pointLight, ambientLight);
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Model ko hamesha thoda rotate karte rehte hain
+            orangeGroup.rotation.y += 0.005;
+            orangeGroup.rotation.x += 0.001;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // --- Window Resize Handler ---
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- GSAP ScrollTrigger Animation ---
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Ek timeline banate hain jo scroll se control hogi
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.content-container',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 2, // 2 second ka smoothing effect
+                // markers: true // Debugging ke liye
+            }
+        });
+
+        // Timeline me animations add karte hain
+        tl.to(orangeGroup.rotation, { x: 1, y: 4, z: 1 }) // Model ko scroll par rotate karega
+          .to(orangeGroup.position, { y: -10 }, '<')     // Model ko niche move karega
+          .to(camera.position, { z: 25 }, '<')     // Camera ko thoda zoom in karega
+          .to(orangeMesh.material.color, { r: 1, g: 0.3, b: 0 }, '>-1.5'); // Last me orange ka color thoda dark kar dega
+    </script>
+</body>
+</html>
+

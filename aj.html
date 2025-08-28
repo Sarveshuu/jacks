@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stickers By AJ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Basic Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffc371, #ff5f6d); /* Orange gradient background */
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden; /* Horizontal scroll ko rokne ke liye */
+        }
+
+        /* --- Header Styling --- */
+        .main-header {
+            text-align: center;
+            padding: 2rem 1rem;
+            animation: slideDown 1s ease-out forwards;
+        }
+
+        .main-header h1 {
+            font-family: 'Pacifico', cursive; /* Cursive font */
+            font-size: clamp(2.5rem, 8vw, 4rem); /* Responsive font size */
+            font-weight: bold;
+            color: white;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Sticker Gallery --- */
+        .sticker-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Sticker Item Styling --- */
+        .sticker-item {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* Animation ke liye shuruaat mein hide karein */
+            transform: translateY(30px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        /* --- Hover Animation --- */
+        .sticker-item:hover {
+            transform: translateY(-10px) scale(1.05); /* Upar uthega aur thoda bada hoga */
+            box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.45);
+        }
+
+        .sticker-item a {
+            display: block;
+            text-decoration: none;
+        }
+
+        .sticker-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .sticker-item:hover img {
+            transform: rotate(3deg); /* Hover par image thodi ghumegi */
+        }
+
+        /* --- Keyframe Animations --- */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>Stickers By AJ</h1>
+    </header>
+
+    <main>
+        <div class="sticker-gallery">
+            <!-- APNI IMAGE KA PATH YAHAAN DAALEIN -->
+            <!-- Sticker 1 -->
+            <div class="sticker-item" style="animation-delay: 0.1s;">
+                <a href="thoth.jpg" download="Sticker_By_AJ_1">
+                    <img src="toby.jpg" alt="Mera Sticker 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 2 -->
+            <div class="sticker-item" style="animation-delay: 0.2s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+2" download="Sticker_By_AJ_2">
+                    <img src="thoth.jpg" alt="Mera Sticker 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 3 -->
+            <div class="sticker-item" style="animation-delay: 0.3s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+3" download="Sticker_By_AJ_3">
+                    <img src="tsdy.jpg" alt="Mera Sticker 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 4 -->
+            <div class="sticker-item" style="animation-delay: 0.4s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+4" download="Sticker_By_AJ_4">
+                    <img src="vaelor.jpg" alt="Mera Sticker 4" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 5 -->
+            <div class="sticker-item" style="animation-delay: 0.5s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+5" download="Sticker_By_AJ_5">
+                    <img src="vintot.jpg" alt="Mera Sticker 5" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 6 -->
+            <div class="sticker-item" style="animation-delay: 0.6s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+6" download="Sticker_By_AJ_6">
+                    <img src="vibh.jpg" alt="Mera Sticker 6" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 7 -->
+            <div class="sticker-item" style="animation-delay: 0.7s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+7" download="Sticker_By_AJ_7">
+                    <img src="vaelor.jpg" alt="Mera Sticker 7" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 8 -->
+            <div class="sticker-item" style="animation-delay: 0.8s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+8" download="Sticker_By_AJ_8">
+                    <img src="toby.jpg" alt="Mera Sticker 8" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 9 -->
+            <div class="sticker-item" style="animation-delay: 0.9s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+9" download="Sticker_By_AJ_9">
+                    <img src="tajudeen.jpg" alt="Mera Sticker 9" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+            <!-- Sticker 10 -->
+            <div class="sticker-item" style="animation-delay: 1s;">
+                <a href="https://placehold.co/300x300/FFC371/FFFFFF?text=Sticker+10" download="Sticker_By_AJ_10">
+                    <img src="thoth.jpg" alt="Mera Sticker 10" onerror="this.onerror=null;this.src='https://placehold.co/300x300/FF5F6D/FFFFFF?text=Image+Error';">
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // JavaScript ki zaroorat nahi hai kyunki saare animations
+        // aur download functionality CSS aur HTML se ho rahi hai.
+        // Lekin, agar aap future mein aur complex features add karna chahte hain
+        // to yahaan code likh sakte hain.
+        // Staggered animation CSS mein `animation-delay` se handle kiya gaya hai.
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Stickers By AJ website loaded!');
+        });
+    </script>
+
+</body>
+</html>
